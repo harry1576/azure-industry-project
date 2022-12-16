@@ -6,13 +6,10 @@
 rg_name=cotiss-website
 vm_name=dev_web_01
 zone_number=1
-config_path=cloud-web-server-init.txt
-
-echo 'Creating Config with :' $config_path
 
 az group create --name cotiss-website --location eastus
 
-az vm create --resource-group $rg_name --name $vm_name --image Debian --admin-username azureuser --generate-ssh-keys --zone $zone_number --custom-data $config_path
+az vm create --resource-group $rg_name --name $vm_name --image Debian --admin-username azureuser --generate-ssh-keys --zone $zone_number 
 
 az vm open-port --port 80 --resource-group $rg_name --name $vm_name
 

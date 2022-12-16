@@ -1,4 +1,8 @@
 #!/bin/bash
+# Passed validation in Cloud Shell on 3/4/2022
+
+# <FullScript>
+# Load balance VMs across availability zones
 
 # Variable block
 let "randomIdentifier=$RANDOM*$RANDOM"
@@ -23,11 +27,6 @@ nic="msdocs-nic-lb-$randomIdentifier"
 vm="msdocs-vm-lb-$randomIdentifier"
 image="UbuntuLTS"
 login="azureuser"
-
-
-image_name=$(az vm show --n $vm_name --resource-group $rg_name --query storageProfile.osDisk.managedDisk.id -o tsv) 
-
-exit
 
 # Create a resource group
 echo "Creating $resourceGroup in "$location"..."
@@ -55,7 +54,7 @@ az network lb rule create --resource-group $resourceGroup --lb-name $loadBalance
 
 # Create three NAT rules for port 22.
 echo "Creating three NAT rules named $loadBalancerRuleSSH"
-for i in `seq 1 2`; do
+for i in `seq 1 3`; do
 az network lb inbound-nat-rule create --resource-group $resourceGroup --lb-name $loadBalancer --name $loadBalancerRuleSSH$i --protocol tcp --frontend-port 422$i --backend-port 22 --frontend-ip-name $frontEndIp
 done
 
@@ -73,14 +72,14 @@ az network nsg rule create --resource-group $resourceGroup --nsg-name $networkSe
 
 # Create three virtual network cards and associate with public IP address and NSG.
 echo "Creating three NICs named $nic for $vNet and $subnet"
-for i in `seq 1 2`; do
+for i in `seq 1 3`; do
 az network nic create --resource-group $resourceGroup --name $nic$i --vnet-name $vNet --subnet $subnet --network-security-group $networkSecurityGroup --lb-name $loadBalancer --lb-address-pools $backEndPool --lb-inbound-nat-rules $loadBalancerRuleSSH$i
 done
 
 # Create three virtual machines, this creates SSH keys if not present.
 echo "Creating three VMs named $vm with $nic using $image"
-for i in `seq 1 2`; do
-az vm create --resource-group $resourceGroup --name $vm$i --zone $i --nics $nic$i --image $image --admin-username $login --generate-ssh-keys --no-wait 
+for i in `seq 1 3`; do
+az vm create --resource-group $resourceGroup --name $vm$i --zone $i --nics $nic$i --image $image --admin-username $login --generate-ssh-keys --no-wait
 done
 
 # List the virtual machines
