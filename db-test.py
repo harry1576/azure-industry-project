@@ -68,7 +68,7 @@ def main():
     
     read_document(collection, document_id)
     update_document(collection, document_id)
-    delete_document(collection, document_id)
+    #delete_document(collection, document_id)
 
 
 if __name__ == '__main__':
