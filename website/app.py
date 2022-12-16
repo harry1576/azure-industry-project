@@ -19,13 +19,16 @@ def index():
     for i in mycol.find({},{"_id":0}):
         feedback.append(i)
 
-    print(feedback)
     return render_template("index.html", heading="feedback", data=feedback)
 
 
 @app.route('/upload', methods = ["GET"])
 def upload():
     feedback = request.args.get('feedback')
+
+    if feedback == '':
+      return "Invalid Feedback"
+
     try:
         insertOp = mycol.insert_one({"feedback": feedback})
         return index()

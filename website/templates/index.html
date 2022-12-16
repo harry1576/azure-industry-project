@@ -16,6 +16,12 @@
 
     <!-- Our Style Sheet -->
 
+    <script type="text/javascript">
+      function randomColors() {
+        document.write("<div style='color:#" + Math.floor(Math.random()*4096).toString(16) + ";'>");
+      }
+    </script>
+
 
 </head>
 
@@ -29,16 +35,20 @@
 
 <div class="container">
   <h3>Employee Feedback</h3>
-  <p>View what our employees have to say.</p> 
+  <p>Here is what our employees have to say.</p> 
 
   <br>
  
   <div class="container-fluid">
-    {% for row in data %}
+    {% for row in data | batch(3, '&nbsp;') %}
       <div class="row">
-        <div class="col-sm-3 col-md-6"">
-          <p> "{{ row.feedback }}" - Anonymous </p>
-        </div>
+        {% for value in row %}
+            <script>randomColors()</script>
+              <div class="col-sm-4"">
+                <p> {{ value.feedback }} </p>
+              </div>
+            </div>
+        {% endfor %}
       </div>
     {% endfor %}
   </div> 
