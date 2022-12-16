@@ -28,34 +28,25 @@
 </div>
 
 <div class="container">
-  <h1>Employee Feedback</h1>
+  <h3>Employee Feedback</h3>
   <p>View what our employees have to say.</p> 
-  <form action="/refresh">
-    <button type="submit" value="refresh" class="btn btn-primary">Refresh</button>
-  </form>
-  <br><br>
-  {% for row in data %}
-    
-    {% for cell in row %}
-    <p>{{ row }} </p>
-    {% endfor %}
 
-  {% endfor %}
-
+  <br>
+ 
   <div class="container-fluid">
+    {% for row in data %}
       <div class="row">
         <div class="col-sm-3 col-md-6"">
-          <p>Lorem ipsum...</p>
-        </div>
-        <div class="col-sm-9 col-md-6"">
-          <p>Sed ut perspiciatis...</p>
+          <p> "{{ row.feedback }}" - Anonymous </p>
         </div>
       </div>
+    {% endfor %}
   </div> 
+
 </div>
 
 <div class="container">
-  <h1>Submit Feedback</h1>
+  <h3>Submit Feedback</h3>
   <p>Submit your own feedback.</p> 
   <br><br>
   <div class="form-group">

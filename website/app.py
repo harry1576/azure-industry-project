@@ -14,24 +14,20 @@ app = Flask("cotissFeedback")
 
 @app.route('/')
 def index():
-    
     feedback = []
 
     for i in mycol.find({},{"_id":0}):
         feedback.append(i)
 
+    print(feedback)
     return render_template("index.html", heading="feedback", data=feedback)
 
 
 @app.route('/upload', methods = ["GET"])
 def upload():
     feedback = request.args.get('feedback')
-    print(feedback)
-    insertDict = {
-        "feedback": feedback
-    }
     try:
-        insertOp = mycol.insert_one(insertDict)
+        insertOp = mycol.insert_one({"feedback": feedback})
         return index()
     except:
         return "Insertion failed"
