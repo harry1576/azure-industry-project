@@ -44,7 +44,7 @@ Cotiss leadership is looking for a simple website where employees can anonymousl
 - Now when I access the public IP address through a web-browser I see the "Website Coming Soon".
 - To create a snap shot I first call the script bash `vm-snapshot.sh` , this creates a copy of the dev_web_01 OS disc.
 - I then call the script `bash vm-from-snapshot` to create a new VM called dev_web_02 from the snapshot (and open port 80).
-- Now I delete the old VM using `az vm delete --resource-group cotiss-website -name dev_web_01`
+- Now I delete the old VM using `az vm delete --resource-group cotiss-website --name dev_web_01`
 - Then viewing the new dev_web_02 IP we can see that is has the same page as the old VM (deployed correctly).
 
 
