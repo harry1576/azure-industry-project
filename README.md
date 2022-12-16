@@ -41,8 +41,6 @@ Cotiss leadership is looking for a simple website where employees can anonymousl
   - `sudo apt install nginx`
 - At this point I am able to view the default nginx home page.
 - I modify the default page to display "Website Coming Soon" by editing the text file with `sudo nano /var/www/html/index.nginx-debian.html`
-- It would be better if I could initalize the webserver all from a config scripts (however I couldn't manage to get this to work?).
-
 - Now when I access the public IP address through a web-browser I see the "Website Coming Soon".
 - To create a snap shot I first call the script bash `vm-snapshot.sh` , this creates a copy of the dev_web_01 OS disc.
 - I then call the script `bash vm-from-snapshot` to create a new VM called dev_web_02 from the snapshot (and open port 80).
