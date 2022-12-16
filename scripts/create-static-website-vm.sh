@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Set up the webserver VM and opens port 80
-# cloud-web-server-init.txt -> sets up nginx
-
 rg_name=cotiss-website
 vm_name=dev_web_01
 zone_number=1
