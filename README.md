@@ -74,12 +74,9 @@ Cotiss leadership is looking for a simple website where employees can anonymousl
   - Refactor your static page into your Honest Feedback website (feel free to use Node, PHP, Python, or whichever programming language you like) which         reads/updates a list of Feedback entries in the Azure Azure Cosmos DB table. 
 
 ### Steps
-  - First I create a VM image, that can be used as a template for generating the VM instances.
-  - 
-
-
-  - First I delete everything within the resouce group, so I can regenerate the VM's inside an avaliablity set.
-  - `az group delete --name cotiss-website`
+  - First I setup a Azure Cosmos DB table and Mongo database using the bash script `bash create-db.sh` .
+  - Then I test the DB has been correctly setup using the script `python db-test.py` (CRUD operations).
+  
 
 
 
