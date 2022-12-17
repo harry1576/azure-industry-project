@@ -20,7 +20,7 @@ Cotiss leadership is looking for a simple website where employees can anonymousl
 - First I created a directory for the Company and created an IAM user.
 - I then created two resource groups one called cotiss-website and the other called budget-notification. 
 - I set the budget limit to $8 and setup alerts for when the actual spending exceeds 80% of this or the forecasted exceeds 90%.
-- I then configured the AZ CLI but using the command `az login` within my local terminal.
+- I then configured the AZ CLI by using the command `az login` within my local terminal.
 
 
 ## Web Hosting Basics
@@ -41,12 +41,10 @@ Cotiss leadership is looking for a simple website where employees can anonymousl
   - `sudo apt install nginx`
 - At this point I am able to view the default nginx home page.
 - I modify the default page to display "Website Coming Soon" by editing the text file with `sudo nano /var/www/html/index.nginx-debian.html`
-- It would be better if I could initalize the webserver all from a config scripts (however I couldn't manage to get this to work?).
-
 - Now when I access the public IP address through a web-browser I see the "Website Coming Soon".
 - To create a snap shot I first call the script bash `vm-snapshot.sh` , this creates a copy of the dev_web_01 OS disc.
 - I then call the script `bash vm-from-snapshot` to create a new VM called dev_web_02 from the snapshot (and open port 80).
-- Now I delete the old VM using `az vm delete --resource-group cotiss-website -name dev_web_01`
+- Now I delete the old VM using `az vm delete --resource-group cotiss-website --name dev_web_01`
 - Then viewing the new dev_web_02 IP we can see that is has the same page as the old VM (deployed correctly).
 
 
@@ -76,6 +74,9 @@ Cotiss leadership is looking for a simple website where employees can anonymousl
 ### Steps
   - First I setup a Azure Cosmos DB table and Mongo database using the bash script `bash create-db.sh` .
   - Then I test the DB has been correctly setup using the script `python db-test.py` (CRUD operations).
+  - I can see that the data has been successfully integrated within the database (looked inside Azure portal).
+  - I then develop a small simple web app and test this on my local machine.
+  - Now I am ready to deploy this website across my VMs - to achieve this I use a bash script which installs the required packages on each VM and then copies the website contents onto their local drives.
   
 
 
