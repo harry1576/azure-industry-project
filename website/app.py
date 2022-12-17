@@ -9,7 +9,7 @@ client = MongoClient(config.connection_string)
 
 mydb = client["customerFeedback"]
 mycol = mydb["feedBackData"]
-app = Flask("cotissFeedback")
+app = Flask(__name__)
 
 
 @app.route('/')
@@ -36,4 +36,6 @@ def upload():
         return "Insertion failed"
 
 
-app.run(debug=True,host="0.0.0.0",port=8080)
+if __name__ == "__main__":
+    app.run()
+
