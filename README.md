@@ -64,7 +64,7 @@ Cotiss leadership is looking for a simple website where employees can anonymousl
 
 
 
-## External Data
+## External Data (good reference: https://krishansubudhi.github.io/webapp/2018/12/01/flaskwebapp.html)
 <b> GOAL: </b> Your auto scaled website can now load/save data to a database between users and sessions.
 
 ## Requirements
