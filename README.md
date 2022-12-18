@@ -64,7 +64,7 @@ Cotiss leadership is looking for a simple website where employees can anonymousl
 
 
 
-## External Data
+## External Data (good reference: https://krishansubudhi.github.io/webapp/2018/12/01/flaskwebapp.html) (running gunicorn on startup: https://stackoverflow.com/questions/25874431/how-to-run-gunicorn-nginx-on-system-startup-ubuntu-14-04)
 <b> GOAL: </b> Your auto scaled website can now load/save data to a database between users and sessions.
 
 ## Requirements
@@ -77,6 +77,8 @@ Cotiss leadership is looking for a simple website where employees can anonymousl
   - I can see that the data has been successfully integrated within the database (looked inside Azure portal).
   - I then develop a small simple web app and test this on my local machine.
   - Now I am ready to deploy this website across my VMs - to achieve this I use a bash script which installs the required packages on each VM and then copies the website contents onto their local drives.
+  - Setup flask/gunicorn to run on start up `sudo nano /etc/systemd/system/myproject.service`
+  - I essentially follow the steps in the docs : https://docs.gunicorn.org/en/latest/deploy.html and setup gunicorn.service & gunicorn.socket aswell as editing the nginx config (as described).
   
 
 
