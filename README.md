@@ -55,13 +55,8 @@ Cotiss leadership is looking for a simple website where employees can anonymousl
 - Put an Azure Load Balancer in front of that virtual machine and load balance between two Avaliablity Zones (one VM in each avaliablity zone)
 
 ### Steps
-  - First I create a VM image, that can be used as a template for generating the VM instances.
-  - 
-
-
-  - First I delete everything within the resouce group, so I can regenerate the VM's inside an avaliablity set.
-  - `az group delete --name cotiss-website`
-
+  - First I create a VM image, that can be used as a template for generating the VM instances (I created a VM image that has the correct IP address in the nginx config).
+  - I then used the azure portal to create a scale set using this VM image - was resonably intuitive to follow along with.
 
 
 ## External Data (good reference: https://krishansubudhi.github.io/webapp/2018/12/01/flaskwebapp.html) (running gunicorn on startup: https://stackoverflow.com/questions/25874431/how-to-run-gunicorn-nginx-on-system-startup-ubuntu-14-04)
@@ -76,11 +71,8 @@ Cotiss leadership is looking for a simple website where employees can anonymousl
   - Then I test the DB has been correctly setup using the script `python db-test.py` (CRUD operations).
   - I can see that the data has been successfully integrated within the database (looked inside Azure portal).
   - I then develop a small simple web app and test this on my local machine.
-  - Now I am ready to deploy this website across my VMs - to achieve this I use a bash script which installs the required packages on each VM and then copies the website contents onto their local drives.
-  - Setup flask/gunicorn to run on start up `sudo nano /etc/systemd/system/myproject.service`
-  - I essentially follow the steps in the docs : https://docs.gunicorn.org/en/latest/deploy.html and setup gunicorn.service & gunicorn.socket aswell as editing the nginx config (as described).
-  
-
+  - I then develop a webserver setup on a VM that has nginx and gunicorn confugred to run on startup (https://docs.gunicorn.org/en/latest/deploy.html)
+  - I use this base VM to create a scale set - using the same steps from the previous task.
 
 
 
