@@ -59,7 +59,7 @@ Cotiss leadership is looking for a simple website where employees can anonymousl
   - I then used the azure portal to create a scale set using this VM image - was resonably intuitive to follow along with.
 
 
-External Data (good reference: https://krishansubudhi.github.io/webapp/2018/12/01/flaskwebapp.html) (running gunicorn on startup: https://stackoverflow.com/questions/25874431/how-to-run-gunicorn-nginx-on-system-startup-ubuntu-14-04)
+## External Data (good reference: https://krishansubudhi.github.io/webapp/2018/12/01/flaskwebapp.html) (running gunicorn on startup: https://stackoverflow.com/questions/25874431/how-to-run-gunicorn-nginx-on-system-startup-ubuntu-14-04)
 
 <b> GOAL: </b> Your auto scaled website can now load/save data to a database between users and sessions.
 
